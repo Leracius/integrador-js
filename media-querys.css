@@ -41,6 +41,12 @@
     #button:hover{
     border-bottom: 3px solid var(--light-blue);
     }
+    .card-main{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
 
   /* scrolling fliping cards */
@@ -89,8 +95,13 @@
     .gallery-h1{
         font-size: 16px;
     }
-
-
-
     
 }
+
+@media only screen and (max-width: 320px) {
+    .card {
+        width: 120px;
+        height: 200px;
+        }
+    
+  }
