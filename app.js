@@ -11,8 +11,6 @@ const botonSiguiente = document.getElementById('siguiente');
 const IMGAPI = document.querySelector('.img-api');
 
 
-// AGREGAR SEMICOLONS!!!!!!
-
 CATEGORIES.addEventListener('click',categorieType);
 
 function categorieType (e){
@@ -60,10 +58,18 @@ const showProduct = (el) =>{
 }
 
 // ------------------CARRITO-------------------------
+let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
+
+const saveLocalStorage = (cartList) => {
+    localStorage.setItem("carrito", JSON.stringify(cartList));
+};
+
+const renderLocal = () =>{
+    render10(carrito); 
+    saveLocalStorage(carrito)
+}
 
 const CARRITO = document.querySelector('.carrito');
-
-let carrito = [];
 
 let total = [];
 
@@ -80,39 +86,27 @@ if(e.target.classList=="boton-carrito"){
    });
 
     if(!ids.includes(id)){
-
-        // e.target.textContent="PRODUCTO EN CARRITO"
-        // e.target.style.setProperty("--light-blue", "red")
-        // e.target.textContent="AGREGAR AL CARRITO"
-        // e.target.style.setProperty("--light-blue", "green")
-        // setTimeout(()=>{
-        //     e.target.style.setProperty("--light-blue", "#507acc") 
-        // },1000)
-
-
-    
+       
        carrito.push(search[0]);
-       total.push(search[0].precio);
+    //    total.push(search[0].precio);
        ids.push(search[0].id);
     
-       reduceTotal(total);
+       reduceTotal();
        render10(carrito);  
+    
+       renderLocal(carrito)
+       console.log(carrito);
+       console.log(total);
+
     //    addUnitToProduct(carrito)
     }else{
         console.log(search);
     }
 }}
 
-// const addUnitToProduct = (product) => {
-//     carrito = carrito.map((cartProduct) =>
-//       carrito.id === carrito.id
-//         ? { ...carrito, quantity: cartProduct.quantity + 1 }
-//         : cartProduct
-//     );
-//   };
-
-const reduceTotal = (arr) =>{
-    const totalSet = [...new Set(arr)];
+const reduceTotal = () =>{
+    total = carrito.map(el=>el.precio)
+    const totalSet = [...new Set(total)];
     let redTotal = totalSet.reduce((acumulador, valorActual) => {
         return acumulador + valorActual;
       }, 0)
@@ -120,17 +114,12 @@ const reduceTotal = (arr) =>{
     return redTotal;
 }
 
-document.querySelector('.vaciar-carrito-btn').style.display='none';
 const CARRITOLIST = document.querySelector('.product-cart');
 
-
-
 const renderCart = (product) =>{
-    document.querySelector('.vaciar-carrito-btn').style.display='block';
     const {nombre, precio, id} = product;
     return `<div class="item">
                 <h1>${nombre} $${precio}</h1>
-                <button class="boton-agregar">x1</button>
                 <button class="boton-borrar" id="boton-borrar" data-id="${id}">🗑️</button>
             </div>`;
     
@@ -167,19 +156,18 @@ CARRITOLIST.addEventListener('click',(e)=>{
 
             render10(newCarrito);
             reduceTotal(newTotal);
+
+            renderLocal(carrito)
         };
     };
 }); 
 
-const deleteEl = (id) =>{
-    carrito.pop(carrito[id]);
-}
 
 CARDMAIN.addEventListener('click',addCartProduct);
 
 // -------------------------------------------------------
 
-addEventListener('DOMContentLoaded',showProduct(productsImg));
+addEventListener('DOMContentLoaded',showProduct(productsImg),render10(carrito),reduceTotal());
 
 const menuActions = (e) =>{
     if(e.target.id=='cart-text')CARRITO.classList.toggle("active-cart");
