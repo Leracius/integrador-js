@@ -58,15 +58,18 @@ const showProduct = (el) =>{
 }
 
 // ------------------CARRITO-------------------------
+
+
 let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
 
-const saveLocalStorage = (cartList) => {
-    localStorage.setItem("carrito", JSON.stringify(cartList));
+const saveLocalStorage = (cartArr) => {
+    localStorage.setItem("carrito", JSON.stringify(cartArr));
 };
 
-const renderLocal = () =>{
-    render10(carrito); 
-    saveLocalStorage(carrito)
+
+const renderLocal = (arr) =>{
+    render10(arr); 
+    saveLocalStorage(arr)
 }
 
 const CARRITO = document.querySelector('.carrito');
@@ -85,30 +88,24 @@ if(e.target.classList=="boton-carrito"){
         return carritoId.id==id;
    });
 
-    if(!ids.includes(id)){
-       
+    if(!ids.includes(id)){    
        carrito.push(search[0]);
-    //    total.push(search[0].precio);
-       ids.push(search[0].id);
     
        reduceTotal();
        render10(carrito);  
-    
        renderLocal(carrito)
-       console.log(carrito);
-       console.log(total);
 
-    //    addUnitToProduct(carrito)
     }else{
-        console.log(search);
+        
     }
 }}
 
 const reduceTotal = () =>{
     total = carrito.map(el=>el.precio)
+    ids = carrito.map(el=>el.id)
     const totalSet = [...new Set(total)];
-    let redTotal = totalSet.reduce((acumulador, valorActual) => {
-        return acumulador + valorActual;
+    let redTotal = totalSet.reduce((acc, v) => {
+        return acc + v;
       }, 0)
     document.querySelector('.total').innerHTML=(`TOTAL: $${redTotal}`);
     return redTotal;
@@ -126,38 +123,31 @@ const renderCart = (product) =>{
 }
 
 const render10 = (arr) =>{
-    const miSet = [...new Set(arr)];
-    return CARRITOLIST.innerHTML=miSet.map((el)=>renderCart(el)).join('');
+    document.getElementById("cart-text").innerHTML=`CARRITO ${arr.length}`
+    return CARRITOLIST.innerHTML=arr.map((el)=>renderCart(el)).join('');
 }
-
-
 
 CARRITOLIST.addEventListener('click',(e)=>{
 
     if(e.target.classList[0]==="boton-agregar"){
-        
+        log("no funco")
     }
 
     if(e.target.id==="boton-borrar"){
         let id = parseInt(e.target.dataset.id); 
+
         let elDel = carrito.find(el=>el.id===id);
 
         newCarrito = carrito.filter(el=>el!==elDel); 
-        newTotal = total.filter(el=>el!==elDel.precio);
-        
-
-        // este if se encarga de verificar que no se intente acceder
-        // a la propiedad precio de un objeto undefined
 
         if (elDel && elDel.precio){
             ids.pop(id);
             carrito.pop(elDel);
-            total.pop(elDel);
 
             render10(newCarrito);
-            reduceTotal(newTotal);
+            reduceTotal();
+            renderLocal(newCarrito)
 
-            renderLocal(carrito)
         };
     };
 }); 
@@ -165,9 +155,13 @@ CARRITOLIST.addEventListener('click',(e)=>{
 
 CARDMAIN.addEventListener('click',addCartProduct);
 
-// -------------------------------------------------------
+const renderInit = () =>{
+    showProduct(productsImg)
+    render10(carrito)
+    reduceTotal()
+}
 
-addEventListener('DOMContentLoaded',showProduct(productsImg),render10(carrito),reduceTotal());
+addEventListener('DOMContentLoaded', renderInit);
 
 const menuActions = (e) =>{
     if(e.target.id=='cart-text')CARRITO.classList.toggle("active-cart");

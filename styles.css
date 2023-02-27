@@ -98,6 +98,12 @@ header{
 .info-container-btn:hover{
     color: var(--light-blue);
 }
+.n-products{
+    border-radius: 50%;
+    font-size: 14px;
+    color: black;
+    background-color: var(--light-blue);
+}
 
 /* cube design */
 
@@ -366,6 +372,8 @@ header{
     width: 100%;
     /* border: 3px solid var(--light-blue); */
     background-size: cover;
+    border-bottom: 3px solid var(--light-blue);
+    padding-bottom: 30px;
 
 }
 
@@ -392,21 +400,18 @@ header{
 #prev, #next{
     border: none;
     cursor: pointer;
-    height: 62px;
-    width: 62px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 50%;
+    margin: 40px;
+    background-color: transparent;
 }
 
-#prev{
-    
-    background-image: url(./assets/icon-chevron-left.svg)
+#prev, #next img{
+    filter: invert(100%);
 }
-
 #next{
-    background-image: url(./assets/icon-chevron-right.svg);
+    transform: rotateY(180deg);
 }
 
 .museum-container button:hover{

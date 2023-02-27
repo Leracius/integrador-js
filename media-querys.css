@@ -78,7 +78,7 @@
     height:250px;
     }
 
-    #prev, #next{
+    #prev img, #next img{
         margin: 10;
         height: 40px;
         width: 40px;
