@@ -66,12 +66,6 @@ const saveLocalStorage = (cartArr) => {
     localStorage.setItem("carrito", JSON.stringify(cartArr));
 };
 
-
-const renderLocal = (arr) =>{
-    render10(arr); 
-    saveLocalStorage(arr)
-}
-
 const CARRITO = document.querySelector('.carrito');
 
 let total = [];
@@ -91,20 +85,19 @@ if(e.target.classList=="boton-carrito"){
     if(!ids.includes(id)){    
        carrito.push(search[0]);
     
-       reduceTotal();
+       reduceTotal(carrito);
        render10(carrito);  
-       renderLocal(carrito)
+       saveLocalStorage(carrito)
 
-    }else{
-        
+    }else{      
     }
 }}
 
-const reduceTotal = () =>{
-    total = carrito.map(el=>el.precio)
+const reduceTotal = (arr) =>{
+    total = arr.map(el=>el.precio)
     ids = carrito.map(el=>el.id)
     const totalSet = [...new Set(total)];
-    let redTotal = totalSet.reduce((acc, v) => {
+    let redTotal = totalSet.reduce((acc, v=0) => {
         return acc + v;
       }, 0)
     document.querySelector('.total').innerHTML=(`TOTAL: $${redTotal}`);
@@ -123,30 +116,35 @@ const renderCart = (product) =>{
 }
 
 const render10 = (arr) =>{
+    console.log(carrito);
     document.getElementById("cart-text").innerHTML=`CARRITO ${arr.length}`
     return CARRITOLIST.innerHTML=arr.map((el)=>renderCart(el)).join('');
+   
+
+  
 }
 
 CARRITOLIST.addEventListener('click',(e)=>{
 
     if(e.target.classList[0]==="boton-agregar"){
-        log("no funco")
+        console.log("no funco")
     }
 
     if(e.target.id==="boton-borrar"){
-        let id = parseInt(e.target.dataset.id); 
-
+        let id = parseInt(e.target.dataset.id);
+        // console.log(id);
+        // console.log(elDel);
         let elDel = carrito.find(el=>el.id===id);
-
         newCarrito = carrito.filter(el=>el!==elDel); 
+  
 
         if (elDel && elDel.precio){
             ids.pop(id);
             carrito.pop(elDel);
 
             render10(newCarrito);
-            reduceTotal();
-            renderLocal(newCarrito)
+            reduceTotal(newCarrito);
+            saveLocalStorage(newCarrito)
 
         };
     };
@@ -158,7 +156,7 @@ CARDMAIN.addEventListener('click',addCartProduct);
 const renderInit = () =>{
     showProduct(productsImg)
     render10(carrito)
-    reduceTotal()
+    reduceTotal(carrito)
 }
 
 addEventListener('DOMContentLoaded', renderInit);
