@@ -3,6 +3,7 @@ const requestMuseum = async (id) => {
     const response = await fetch(baseURL + id);
     const data = await response.json();
     renderApiImg(data)
+    console.log(response);
 };
 
 let contador = 1
@@ -44,6 +45,6 @@ const NEXTBTN = document.getElementById('next')
 PREVBTN.addEventListener('click', prevId)
 NEXTBTN.addEventListener('click', nextId)
 
-addEventListener('DOMContentLoaded', requestId)
+// addEventListener('DOMContentLoaded', requestId)
 
     // requestMuseum(arr[pos]);

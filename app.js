@@ -88,8 +88,10 @@ if(e.target.classList=="boton-carrito"){
        reduceTotal(carrito);
        render10(carrito);  
        saveLocalStorage(carrito)
+       addProdcutSucces("green","PRODUCTO AGREGADO AL CARRITO")
 
-    }else{      
+    }else{ 
+        addProdcutSucces("red","PRODUCTO EN EL CARRITO")     
     }
 }}
 
@@ -110,7 +112,7 @@ const renderCart = (product) =>{
     const {nombre, precio, id} = product;
     return `<div class="item">
                 <h1>${nombre} $${precio}</h1>
-                <button class="boton-borrar" id="boton-borrar" data-id="${id}">🗑️</button>
+                <button class="boton-borrar" id="boton-borrar" data-id="${id}">❌</button>
             </div>`;
     
 }
@@ -126,29 +128,29 @@ const render10 = (arr) =>{
 
 CARRITOLIST.addEventListener('click',(e)=>{
 
-    if(e.target.classList[0]==="boton-agregar"){
-        console.log("no funco")
-    }
-
     if(e.target.id==="boton-borrar"){
         let id = parseInt(e.target.dataset.id);
-        // console.log(id);
-        // console.log(elDel);
+
         let elDel = carrito.find(el=>el.id===id);
-        newCarrito = carrito.filter(el=>el!==elDel); 
-  
+        carrito = carrito.filter(el=>el!==elDel); 
+        
 
         if (elDel && elDel.precio){
             ids.pop(id);
-            carrito.pop(elDel);
 
-            render10(newCarrito);
-            reduceTotal(newCarrito);
-            saveLocalStorage(newCarrito)
+            render10(carrito);
+            reduceTotal(carrito);
+            saveLocalStorage(carrito)
 
-        };
+        }else{
+
+        }
     };
 }); 
+
+const deleteEl = () =>{
+
+}
 
 
 CARDMAIN.addEventListener('click',addCartProduct);
@@ -181,5 +183,35 @@ const renderApiImg = (apires) =>{
 
 }
 
+const CORRECTBUY = document.querySelector(".correct-buy")
+const WARNINGMESSAGE = document.querySelector(".warning")
 
+const addProdcutSucces = (color, message) =>{
+    WARNINGMESSAGE.style.backgroundColor=color
+    CORRECTBUY.style.display="flex"
+    WARNINGMESSAGE.innerHTML=message
+    setTimeout(()=>{
+        CORRECTBUY.style.display="none"
+    },1000)
+}
 
+const CARRITOBTN = document.querySelector(".comprar-carrito-btn") 
+
+const buyCart = () =>{
+   
+}
+
+CARRITOBTN.addEventListener("click",()=>{
+   if(carrito==""){
+    addProdcutSucces("red", "CARRITO VACIO")
+   }
+   if(carrito!=""){
+    addProdcutSucces("green", "COMPRA EXITOSA")
+    carrito = []
+    render10(carrito)
+    reduceTotal(carrito)
+    saveLocalStorage(carrito)
+   }
+
+    
+})

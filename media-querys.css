@@ -17,10 +17,11 @@
         font-size: 12px;
     }
 
+
     .carrito{
         width: 100%;
-        height: calc(100vh - 124px);
-        top: 124px;
+        height: calc(100vh - 121px);
+        top: 121px;
     }
     .carrito h1{
         font-size: 25px;
@@ -78,6 +79,9 @@
     height:250px;
     }
 
+    #prev, #next{
+        margin: 10px;
+    }
     #prev img, #next img{
         margin: 10;
         height: 40px;
