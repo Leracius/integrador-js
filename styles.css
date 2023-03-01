@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
+
+/*----------------------- INDICE------------------------ */
+
+/* 21- root */
+/* 46- MENSAJE DE COMPRA CORRECTA, CARRITO VACÍO, PRODUCTO EN CARRITO O PRODUCTO AGREGADO */
+/* 86 -------------------------- MENU DESPEGLABLE ----------------------------------------*/
+/* 129 ----------------------------CONTENEDOR DE CUBO Y LOGO -------------------------*/
+
+
+
+
+
 *{
     margin: 0;
     padding: 0;
@@ -11,10 +23,6 @@
 h1, button, h2, p{
     color: white
 }
-
-
-/* cambiar h1, p, button y h2. body y carrito backg */
-
 
 :root{
     --light-blue: #507acc;
@@ -39,6 +47,8 @@ body{
     /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='71' height='71' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23273959' fill-opacity='0.84'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.84'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");  */
     /* background-image: url(./assets/background-patron.jpg); */
 }
+
+/* MENSAJE DE COMPRA CORRECTA, CARRITO VACÍO, PRODUCTO EN CARRITO O PRODUCTO AGREGADO */
 
 .correct-buy{
     width: 100%;
@@ -68,20 +78,35 @@ body{
 header{
     width: 100%;
     background-size: contain;
+    background-image: url(./assets/header-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* filter: brightness(50%); */
+
     /* background-color: #000000; */
     /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%234F6B9F' stroke-width='2.7' stroke-opacity='0.49'%3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E"); */
 }
 
-.expand{
+/*-------------------------- MENU DESPEGLABLE ----------------------------------------*/
+
+.expand h1{
+    text-align: center;
+}
+
+.item-container{
     display: flex;
-    justify-content: center;
+    overflow: visible;
+    justify-content:center;
     align-items: center;
+    gap: 10px;
     /* color: white; */
 }
 .expand.active{
-    height: 200px;
-    animation: shutter-in-top 0.3s linear 0s 1 normal none;
+    height: 100vh;
+    animation: shutter-in-top 1.5s linear 0s 1 normal none;
 }
+
 
 @keyframes shutter-in-top {
 			
@@ -89,9 +114,32 @@ header{
         height: 0px;
     }
     100% {
-        height: 200px;
+        height: 100vh;
     }
 }
+
+
+.item-menu{
+    display: flex;
+    width: 200px;
+    height: 150px;
+}
+
+.item-menu:hover{
+    opacity: 90%;
+}
+
+
+.item-menu img{
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+a{
+    width: 100%;
+    height: 100%;
+}
+/* ----------------------------CONTENEDOR DE CUBO Y LOGO -------------------------*/
 
 .head{
     width: 100%;
@@ -100,6 +148,9 @@ header{
     display: flex;
     justify-content: space-between;
 }
+
+/* --------------------------------BARRA DE NAVEGACION------------------------- */
+
 .navbar{
     border-bottom: 3px solid var(--light-blue);
 }
@@ -137,7 +188,7 @@ header{
     background-color: var(--light-blue);
 }
 
-/* cube design */
+/* ---------------------------------cube design--------------------------------------- */
 
 .cube-contain{  
     position: absolute;
@@ -205,7 +256,7 @@ header{
         }
   }
 
-/* ------LATERAL CART-------------------------------------------------------------------------------------------- */
+/* ------carrito-------------------------------------------------------------------------------------------- */
 
 .carrito{
     display: flex;
@@ -213,9 +264,9 @@ header{
     align-items: center;
     width: 400px;
     height: calc(100vh - 100px);
-    background-color: rgb(26, 26, 26);
+    background-color: rgba(26, 26, 26, 0.764);
     /* color: white; */
-    position: absolute;
+    position: fixed;
     top: 100px;
     right: 0;
     z-index: 2;
@@ -268,7 +319,7 @@ header{
 }
 
 
-/* ------------------section-------------------------------------------------------------------------------------- */
+/* ------------------FLIP CARDS SECCION-------------------------------------------------------------------------------------- */
 
 .product-container{
     padding-top: 20px;
@@ -276,7 +327,10 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: transparent;
+    /* background-color: transparent; */
+    background-attachment: fixed;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%234F6B9F' stroke-width='2.7' stroke-opacity='0.49'%3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
+
     /* color: white; */
     flex-wrap: wrap;
     padding-bottom: 70px;
@@ -389,7 +443,7 @@ header{
     cursor: pointer;
 }
 .boton-carrito:hover, .comprar-carrito-btn:hover {
-    background: var(--light-blue);
+    background: gree;
 }
 
 .card:hover .front-card {
@@ -408,7 +462,6 @@ header{
     width: 100%;
     /* border: 3px solid var(--light-blue); */
     background-size: cover;
-    border-bottom: 3px solid var(--light-blue);
     padding-bottom: 30px;
 
 }
@@ -465,4 +518,19 @@ header{
 .img-api img{
     width: 600px;
     height: 600px;
+}
+
+footer{
+    width: 100%;
+    background-image: url(./assets/header-background.png);
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+footer h1{
+    text-align: center;
 }

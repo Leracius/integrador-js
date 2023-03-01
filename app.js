@@ -161,11 +161,41 @@ const renderInit = () =>{
     reduceTotal(carrito)
 }
 
-addEventListener('DOMContentLoaded', renderInit);
+addEventListener('DOMContentLoaded', renderInit, BOXNAV.classList.toggle('active'));
 
+const ITEMENU = document.querySelector(".item-menu")
+ 
 const menuActions = (e) =>{
-    if(e.target.id=='cart-text')CARRITO.classList.toggle("active-cart");
-    if(e.target.id=="sobre-mi")BOXNAV.classList.toggle('active');
+
+    if(e.target.classList[1]=="open"){
+        e.target.classList.toggle("open")
+        // return BOXNAV.innerHTML=""
+    }
+
+    if(e.target.id=='cart-text'){
+        CARRITO.classList.toggle("active-cart");
+
+    }
+
+    if(e.target.id=="comprar"){
+        BOXNAV.classList.toggle('active');
+        console.log(e.target.id);
+
+    }
+    
+    if(e.target.id=="museum"){
+        console.log(e.target.id);
+        
+    }
+    
+
+    if(e.target.id=="comprar"){
+        e.target.classList.toggle("active")
+        e.target.classList.toggle("open")
+        BOXNAV.innerHTML=""
+
+    }
+    
 }
 
 const hideAndShowSection = () =>{

@@ -23,6 +23,10 @@
         height: calc(100vh - 121px);
         top: 121px;
     }
+    .active-cart{
+        transform: translate(-10%);
+        transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+    }
     .carrito h1{
         font-size: 25px;
     }
