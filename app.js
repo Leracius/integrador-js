@@ -73,7 +73,6 @@ let total = [];
 let ids = [];
 
 const addCartProduct = (e) =>{
-
 if(e.target.classList=="boton-carrito"){
 
     let id = parseInt(e.target.dataset.id);
@@ -89,6 +88,7 @@ if(e.target.classList=="boton-carrito"){
        render10(carrito);  
        saveLocalStorage(carrito)
        addProdcutSucces("green","PRODUCTO AGREGADO AL CARRITO")
+       alertColorNumberProduct("rgb(0, 194, 0)") 
 
     }else{ 
         addProdcutSucces("red","PRODUCTO EN EL CARRITO")     
@@ -117,17 +117,23 @@ const renderCart = (product) =>{
     
 }
 
-const render10 = (arr) =>{
-    console.log(carrito);
-    document.getElementById("cart-text").innerHTML=`CARRITO ${arr.length}`
-    return CARRITOLIST.innerHTML=arr.map((el)=>renderCart(el)).join('');
-   
+const CARRITOTEXT = document.getElementById("cart-text")
 
-  
+const render10 = (arr) =>{
+    arr.length===0?CARRITOTEXT.innerHTML="CARRITO":CARRITOTEXT.innerHTML=`CARRITO ${arr.length}`
+    return CARRITOLIST.innerHTML=arr.map((el)=>renderCart(el)).join('');
+}
+
+const alertColorNumberProduct = (color) =>{
+    CARRITOTEXT.style.color=color
+    setTimeout(()=>{
+        CARRITOTEXT.style.color="white" 
+    },1000)
 }
 
 CARRITOLIST.addEventListener('click',(e)=>{
 
+    
     if(e.target.id==="boton-borrar"){
         let id = parseInt(e.target.dataset.id);
 
@@ -141,6 +147,7 @@ CARRITOLIST.addEventListener('click',(e)=>{
             render10(carrito);
             reduceTotal(carrito);
             saveLocalStorage(carrito)
+            alertColorNumberProduct("red")
 
         }else{
 
@@ -148,9 +155,6 @@ CARRITOLIST.addEventListener('click',(e)=>{
     };
 }); 
 
-const deleteEl = () =>{
-
-}
 
 
 CARDMAIN.addEventListener('click',addCartProduct);
@@ -161,9 +165,17 @@ const renderInit = () =>{
     reduceTotal(carrito)
 }
 
-addEventListener('DOMContentLoaded', renderInit, BOXNAV.classList.toggle('active'));
+
+const XBUTTONCART = document.querySelector(".carrito-x-btn")
+
+XBUTTONCART.addEventListener("click",()=>{
+    CARRITO.classList.toggle("active-cart")
+})
+
+// addEventListener('DOMContentLoaded', renderInit, buySeccionView );
 
 const ITEMENU = document.querySelector(".item-menu")
+
  
 const menuActions = (e) =>{
 
@@ -192,11 +204,13 @@ const menuActions = (e) =>{
     if(e.target.id=="comprar"){
         e.target.classList.toggle("active")
         e.target.classList.toggle("open")
-        BOXNAV.innerHTML=""
+        // BOXNAV.innerHTML=""
 
     }
     
 }
+
+
 
 const hideAndShowSection = () =>{
     SECTIONBUY.classList[1]=='hide'? SECTIONBUY.classList.remove('hide'):SECTION.classList.add('hide');
@@ -227,9 +241,6 @@ const addProdcutSucces = (color, message) =>{
 
 const CARRITOBTN = document.querySelector(".comprar-carrito-btn") 
 
-const buyCart = () =>{
-   
-}
 
 CARRITOBTN.addEventListener("click",()=>{
    if(carrito==""){
@@ -245,3 +256,29 @@ CARRITOBTN.addEventListener("click",()=>{
 
     
 })
+
+
+const buySeccionView = () =>{
+    setTimeout(()=>{
+    BOXNAV.classList.toggle('active')
+    },1500)
+    setTimeout(()=>{
+        return BOXNAV.innerHTML=`<div><h1>Te invito a explorar mi galería en línea y descubrir las hermosas pinturas que tenemos para ofrecerte.
+        Gracias por visitar mi página de venta de pinturas y espero que disfrutes de tu experiencia de compra en mi
+         tienda de arte en línea.</h1></div>
+        <div><button class="buy-button">COMPRAR</button></div>`
+    },2000)
+}
+
+// const INITBUTTON = document.querySelector(".buy-button")
+
+
+BOXNAV.addEventListener("click",(e)=>{
+    e.target.classList=="buy-button"
+    ?BOXNAV.classList.toggle('active')
+    :console.log("mal");
+    BOXNAV.innerHTML=""
+})
+
+
+addEventListener('DOMContentLoaded', renderInit, buySeccionView());

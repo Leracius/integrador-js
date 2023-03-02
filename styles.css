@@ -102,11 +102,54 @@ header{
     gap: 10px;
     /* color: white; */
 }
-.expand.active{
-    height: 100vh;
-    animation: shutter-in-top 1.5s linear 0s 1 normal none;
+
+.expand{
+    position: fixed;
 }
 
+.expand.active{
+    position: relative;
+    height: calc(100vh - 85px) ;
+    animation: shutter-in-top 1.5s linear 0s 1 normal none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* position: fixed; */
+}
+
+.expand.active div{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    animation: myAnim 3s ease 0s 1 normal forwards;
+}
+
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.buy-button{
+    width: 200px;
+    height: 60px;
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: 900;
+    cursor: pointer;
+    margin-bottom: 100px;
+
+}
+
+.buy-button:hover{
+    background-color: #314363;
+}
 
 @keyframes shutter-in-top {
 			
@@ -114,7 +157,7 @@ header{
         height: 0px;
     }
     100% {
-        height: 100vh;
+        height:calc(100vh - 85px);
     }
 }
 
@@ -153,6 +196,7 @@ a{
 
 .navbar{
     border-bottom: 3px solid var(--light-blue);
+    
 }
 
 .info-container{
@@ -176,6 +220,8 @@ a{
     font-weight: 700;
     padding: 5px;
     cursor: pointer;
+    /* position: fixed; */
+    
 }
 
 .info-container-btn:hover{
@@ -186,6 +232,18 @@ a{
     font-size: 14px;
     color: black;
     background-color: var(--light-blue);
+}
+.carrito-x-btn-container{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+.carrito-x-btn-container button{
+   background-color: transparent;
+   border: none;
+   font-weight: 600;
+   font-size: 20px;
+   margin-right: 10px;
 }
 
 /* ---------------------------------cube design--------------------------------------- */
@@ -275,6 +333,7 @@ a{
     border-bottom: 3px solid var(--light-blue);
     border-top:3px solid var(--light-blue) ;
     padding-bottom: 30px;
+    backdrop-filter: blur(15xp);
 }
 .active-cart{
     transform: translate(0%);
@@ -443,7 +502,7 @@ a{
     cursor: pointer;
 }
 .boton-carrito:hover, .comprar-carrito-btn:hover {
-    background: gree;
+    background: green;
 }
 
 .card:hover .front-card {
@@ -460,6 +519,8 @@ a{
     align-items: center;
     justify-content: center;
     width: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%234F6B9F' stroke-width='2.7' stroke-opacity='0.49'%3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
+
     /* border: 3px solid var(--light-blue); */
     background-size: cover;
     padding-bottom: 30px;
