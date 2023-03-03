@@ -34,12 +34,14 @@
 }
 
 .show-museum{
+    width: 100%;
+    height: 100vh;
     padding: 20px;
-    bottom: 170px;
+    bottom: 0;
     position: fixed;
     display: flex;
     justify-content: center;
-    background-color: black;
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     animation: falling 1s ease 0s 1 normal forwards;
     backdrop-filter: blur(30px);
@@ -159,3 +161,13 @@ footer{
 footer h1{
     text-align: center;
 }
+
+#myImage {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    z-index: 300;
+  }
