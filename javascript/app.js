@@ -120,7 +120,7 @@ const renderCart = (product) =>{
 const CARRITOTEXT = document.getElementById("cart-text")
 
 const render10 = (arr) =>{
-    arr.length===0?CARRITOTEXT.innerHTML="CARRITO":CARRITOTEXT.innerHTML=`CARRITO ${arr.length}`
+    arr.length===0?CARRITOTEXT.innerHTML=0:CARRITOTEXT.innerHTML=arr.length
     return CARRITOLIST.innerHTML=arr.map((el)=>renderCart(el)).join('');
 }
 
@@ -221,9 +221,11 @@ INFOBTNS.addEventListener('click',menuActions);
 
 const renderApiImg = (apires) =>{
     const {artistAlphaSort, primaryImage, title} = apires
-    IMGAPI.innerHTML=` <h1 class="autor">${artistAlphaSort}</h1>
+    IMGAPI.innerHTML=` 
+    <h1 class="autor">METROPOLITAN MUSEUM API</h1>
+    <img src="${primaryImage}" alt="">
     <h1 class="autor">"${title}"</h1>
-    <img src="${primaryImage}" alt="">`;
+    <h1 class="autor">${artistAlphaSort}.</h1>`;
 
 }
 
@@ -266,7 +268,8 @@ const buySeccionView = () =>{
         return BOXNAV.innerHTML=`<div><h1>Te invito a explorar mi galería en línea y descubrir las hermosas pinturas que tenemos para ofrecerte.
         Gracias por visitar mi página de venta de pinturas y espero que disfrutes de tu experiencia de compra en mi
          tienda de arte en línea.</h1></div>
-        <div><button class="buy-button">COMPRAR</button></div>`
+        <div><button class="buy-button">COMPRAR</button></div>
+        <button class="info-container-btn" id="btn-nav">LOGIN</button>`
     },2000)
 }
 
@@ -274,11 +277,19 @@ const buySeccionView = () =>{
 
 
 BOXNAV.addEventListener("click",(e)=>{
-    e.target.classList=="buy-button"
-    ?BOXNAV.classList.toggle('active')
-    :console.log("mal");
-    BOXNAV.innerHTML=""
+    if(e.target.classList=="buy-button"){
+        BOXNAV.classList.toggle('active')
+        BOXNAV.innerHTML=""
+    }
 })
 
 
 addEventListener('DOMContentLoaded', renderInit, buySeccionView());
+
+const CUBE = document.querySelector(".cube-contain")
+
+const HIDEMUSEUM = document.querySelector(".hide-museum")
+
+CUBE.addEventListener("click",()=>{
+    HIDEMUSEUM.classList.toggle("show-museum")
+})

@@ -1,0 +1,240 @@
+/*-------------------------- MENU EXPANDIBLE----------------------------------------*/
+
+.expand h1{
+    text-align: center;
+}
+
+.item-container{
+    display: flex;
+    overflow: visible;
+    justify-content:center;
+    align-items: center;
+    gap: 10px;
+}
+
+.expand{
+    position: fixed;
+}
+
+.expand.active{
+    position: relative;
+    height: 100vh;
+    animation: shutter-in-top 1.5s linear 0s 1 normal none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.expand.active div{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    animation: myAnim 3s ease 0s 1 normal forwards;
+}
+
+.buy-button{
+    width: 200px;
+    height: 60px;
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: 900;
+    cursor: pointer;
+
+}
+
+
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+
+.buy-button:hover{
+    background-color: #314363;
+}
+
+@keyframes shutter-in-top {
+			
+    0% {
+        height: 0px;
+    }
+    100% {
+        height:100vh;
+    }
+}
+
+
+.item-menu{
+    display: flex;
+    width: 200px;
+    height: 150px;
+}
+
+.item-menu:hover{
+    opacity: 90%;
+}
+
+
+.item-menu img{
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+a{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.navbar{
+    border-bottom: 3px solid var(--light-blue);
+    
+}
+
+.info-container{
+    /* height: 40px; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: transparent;
+    gap: 5px;
+}
+
+.info-container-btn{
+    /* align-self: flex-end; */
+    border: none;
+    background-color: transparent;
+    /* color: white; */
+    padding: 0;
+    background: transparent;
+    /* height: 100%; */
+    font-size: 20px;
+    font-weight: 700;
+    padding: 5px;
+    cursor: pointer;
+    animation: myAnim 3s ease 0s 1 normal forwards;
+
+    /* position: fixed; */
+    
+}
+
+#cart-text{
+    position: fixed;
+    z-index: 100;
+    width: 70px;
+    height: 70px;
+    right: 10px;
+    top: calc(100vh - 80px);
+    font-size: 25px;
+    background-color: rgba(3, 3, 3, 0.593);
+    border-radius: 50%;
+
+
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+#cart-text:hover{
+    /* background-image: url(./assets/carro-de-la-carretilla.png); */
+    background-image: url(./assets/bolsa-de-la-compra.png);
+    filter: invert();
+    color: black;
+    border-radius: 0;
+    background-color: transparent;
+    font-size: 0;
+}
+
+.info-container-btn:hover{
+    color: var(--light-blue);
+}
+.n-products{
+    border-radius: 50%;
+    font-size: 14px;
+    color: black;
+    background-color: var(--light-blue);
+}
+.carrito-x-btn-container{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+.carrito-x-btn-container button{
+   background-color: transparent;
+   border: none;
+   font-weight: 600;
+   font-size: 20px;
+   margin-right: 10px;
+}
+
+/* ------carrito-------------------------------------------------------------------------------------------- */
+
+.carrito{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: calc(100vh - 100px);
+    background-color: rgba(0, 0, 0, 0.927);
+    /* color: white; */
+    position: fixed;
+    top: 100px;
+    right: 0;
+    z-index: 2;
+    transform: translate(200%);
+    transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+    border-bottom: 3px solid var(--light-blue);
+    border-top:3px solid var(--light-blue) ;
+    padding-bottom: 30px;
+    backdrop-filter: blur(15xp);
+    z-index: 200;
+}
+.active-cart{
+    transform: translate(0%);
+    transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+}
+
+.product-cart{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    overflow-y: auto;
+}
+.item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0 10px;
+}
+.item h1{
+    font-size: 20px;
+    font-weight: 300;
+}
+.boton-borrar{
+    /* color: white; */
+    border: none;
+    background: none;
+    font-weight: 300;
+    font-size: 20px;
+    justify-self: center;
+}
+.total{
+    width: 100%;
+    /* color: white; */
+    font-size: 22px;
+    text-align: center;
+    font-weight: 300;
+}
+.boton-agregar{
+    width: 25px;
+}

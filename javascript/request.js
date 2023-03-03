@@ -6,7 +6,12 @@ const requestMuseum = async (id) => {
     console.log(response);
 };
 
-let contador = 1
+
+let contador = JSON.parse(localStorage.getItem("contador"))||1
+
+const saveCount = () =>{
+  localStorage.setItem("contador",JSON.stringify(contador))
+}
 
 let objIdArray = []
 
@@ -33,11 +38,13 @@ const nextId = async () =>{
     aumentar()
     requestMuseum(objIdArray[contador])
     disableBtn()
+    saveCount()
 }
   const prevId = async () =>{
     restar()
     requestMuseum(objIdArray[contador])
     disableBtn()
+    saveCount()
 }
 
 const PREVBTN = document.getElementById('prev')
@@ -45,6 +52,6 @@ const NEXTBTN = document.getElementById('next')
 PREVBTN.addEventListener('click', prevId)
 NEXTBTN.addEventListener('click', nextId)
 
-// addEventListener('DOMContentLoaded', requestId)
+addEventListener('DOMContentLoaded', requestId)
 
     // requestMuseum(arr[pos]);
