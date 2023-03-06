@@ -27,6 +27,7 @@
 
     .expand.active{
         justify-content: flex-start;
+        height: calc(100vh - 88px);
      }
      
      .expand h1{
@@ -75,15 +76,26 @@
     #button:hover{
     border-bottom: 3px solid var(--light-blue);
     }
+
+    #cart-text{
+        background-image: url(./assets/bolsa-de-la-compra.png);
+        filter: invert();
+        color: black;
+        border-radius: 0;
+        background-color: transparent;
+        font-size: 0;
+        border: none;
+    }
+
+    /* scrolling fliping cards */
+    
     .card-main{
         width: 100%;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
     }
-
-
-  /* scrolling fliping cards */
+    
     .card {
     width: 160px;
     height: 230px;
