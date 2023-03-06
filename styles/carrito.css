@@ -146,9 +146,8 @@ a{
 
 #cart-text:hover{
     /* background-image: url(./assets/carro-de-la-carretilla.png); */
-    background-image: url(./assets/bolsa-de-la-compra.png);
-    filter: invert();
-    color: black;
+    background-image: url(./assets/bolsa-de-compra.png);
+    color: white;
     border-radius: 0;
     background-color: transparent;
     font-size: 0;
@@ -196,7 +195,6 @@ a{
     border-bottom: 3px solid var(--light-blue);
     border-top:3px solid var(--light-blue) ;
     padding-bottom: 30px;
-    backdrop-filter: blur(15xp);
     z-index: 200;
 }
 .active-cart{

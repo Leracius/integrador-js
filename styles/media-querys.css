@@ -18,9 +18,12 @@
     }
     .correct-buy{
         width: 100%;
-        font-size: 10px;
         z-index: 500;
         text-align: center;
+        margin-top: 30px;
+    }
+    .correct-buy h1{
+        font-size: 15px;
     }
 
     /* MENU EXPANDIBLE */
@@ -50,7 +53,7 @@
 
     .carrito{
         width: 100%;
-        height: calc(100vh - 121px);
+        height: calc(100vh - 200px);
         top: 121px;
     }
     .active-cart{
@@ -78,13 +81,18 @@
     }
 
     #cart-text{
-        background-image: url(./assets/bolsa-de-la-compra.png);
-        filter: invert();
-        color: black;
-        border-radius: 0;
+        background-image: url(./assets/bolsa-de-compra.png);
         background-color: transparent;
-        font-size: 0;
+        font-size: 20px;
         border: none;
+        color: white;
+        width: 50px;
+        height: 60px;
+        top: 20px;
+        font-weight: 600;
+    }
+    #cart-text:hover{
+        font-size: 20px;
     }
 
     /* scrolling fliping cards */
