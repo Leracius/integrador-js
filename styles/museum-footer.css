@@ -18,8 +18,22 @@
 
 .hide-museum{
     display: none;
-    animation: exit 1s ease 0s 1 normal forwards;
+    animation: exit 10s ease 0s 1 normal forwards;
 }
+
+@keyframes exit {
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1.4);
+	}
+    
+}
+
 
 @keyframes exit {
 	0% {
@@ -43,11 +57,21 @@
     justify-content: center;
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    animation: falling 1s ease 0s 1 normal forwards;
+    animation: fade 1s ease 0s 1 normal forwards;
     backdrop-filter: blur(30px);
 }
 
-@keyframes falling {
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* @keyframes falling {
 	0% {
 		animation-timing-function: ease-in;
 		opacity: 0;
@@ -89,7 +113,7 @@
 		animation-timing-function: ease-out;
 		transform: translateY(0);
 	}
-}
+} */
 
 /* .gallery-h1{
     width: 100%;
@@ -149,7 +173,7 @@
 
 footer{
     width: 100%;
-    background-image: url(./assets/header-background.png);
+    /* background-image: url(./assets/header-background.png); */
     height: 300px;
     background-repeat: no-repeat;
     background-size: cover;

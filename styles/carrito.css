@@ -4,6 +4,7 @@
     text-align: center;
 }
 
+
 .item-container{
     display: flex;
     overflow: visible;
@@ -108,7 +109,7 @@ a{
     gap: 5px;
 }
 
-.info-container-btn{
+.login{
     /* align-self: flex-end; */
     border: none;
     background-color: transparent;
@@ -151,6 +152,7 @@ a{
     border-radius: 0;
     background-color: transparent;
     font-size: 0;
+    border: none;
 }
 
 .info-container-btn:hover{
@@ -209,6 +211,9 @@ a{
     height: 75%;
     overflow-y: auto;
 }
+
+/* PRODUCTO EN EL CARRITO */
+
 .item{
     width: 100%;
     display: flex;
@@ -237,4 +242,22 @@ a{
 }
 .boton-agregar{
     width: 25px;
+}
+.add-item-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-item-container button{
+    border: none;
+    height: 20px;
+    width: 20px;
+    background-color: var(--light-blue);
+}
+.add-item-container button:hover{
+    background-color: green;
+}
+.add-item-container h2{
+    font-size: 18px;
+    margin: 10px;
 }

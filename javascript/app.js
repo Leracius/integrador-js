@@ -113,7 +113,12 @@ const renderCart = (product) =>{
     return `<div class="item">
                 <h1>${nombre} $${precio}</h1>
                 <button class="boton-borrar" id="boton-borrar" data-id="${id}">❌</button>
-            </div>`;
+            </div>
+            <div class="add-item-container">
+            <button class="minus-btn">-</button>
+            <h2 class="product-quantity">0</h2>
+            <button class="plus-btn">+</button>
+        </div>`;
     
 }
 
@@ -189,11 +194,11 @@ const menuActions = (e) =>{
 
     }
 
-    if(e.target.id=="comprar"){
-        BOXNAV.classList.toggle('active');
-        console.log(e.target.id);
+    // if(e.target.id=="comprar"){
+    //     BOXNAV.classList.toggle('active');
+    //     console.log(e.target.id);
 
-    }
+    // }
     
     if(e.target.id=="museum"){
         console.log(e.target.id);
@@ -202,6 +207,7 @@ const menuActions = (e) =>{
     
 
     if(e.target.id=="comprar"){
+        console.log(e.target.classList[0]);
         e.target.classList.toggle("active")
         e.target.classList.toggle("open")
         // BOXNAV.innerHTML=""
@@ -269,7 +275,7 @@ const buySeccionView = () =>{
         Gracias por visitar mi página de venta de pinturas y espero que disfrutes de tu experiencia de compra en mi
          tienda de arte en línea.</h1></div>
         <div><button class="buy-button">COMPRAR</button></div>
-        <button class="info-container-btn" id="btn-nav">LOGIN</button>`
+        <button class="login" id="btn-nav">LOGIN</button>`
     },2000)
 }
 
@@ -280,6 +286,8 @@ BOXNAV.addEventListener("click",(e)=>{
     if(e.target.classList=="buy-button"){
         BOXNAV.classList.toggle('active')
         BOXNAV.innerHTML=""
+    }else if(e.target.classList=="login"){
+        func23()
     }
 })
 
@@ -296,49 +304,74 @@ CUBE.addEventListener("click",()=>{
 
 // CHAT GPT SOLUTIONS
 
-let myImage = document.querySelector("#myImage");
-let isDragging = false;
-let currentX;
-let currentY;
-let initialX;
-let initialY;
-let xOffset = 0;
-let yOffset = 0;
+// let myImage = document.querySelector("#myImage");
+// let isDragging = false;
+// let currentX;
+// let currentY;
+// let initialX;
+// let initialY;
+// let xOffset = 0;
+// let yOffset = 0;
 
-myImage.addEventListener("mousedown", dragStart);
-myImage.addEventListener("mouseup", dragEnd);
-myImage.addEventListener("mousemove", drag);
+// myImage.addEventListener("mousedown", dragStart);
+// myImage.addEventListener("mouseup", dragEnd);
+// myImage.addEventListener("mousemove", drag);
 
-function dragStart(e) {
-  initialX = e.clientX - xOffset;
-  initialY = e.clientY - yOffset;
+// function dragStart(e) {
+//   initialX = e.clientX - xOffset;
+//   initialY = e.clientY - yOffset;
 
-  if (e.target === myImage) {
-    isDragging = true;
+//   if (e.target === myImage) {
+//     isDragging = true;
+//   }
+// }
+
+// function dragEnd(e) {
+//   initialX = currentX;
+//   initialY = currentY;
+
+//   isDragging = false;
+// }
+
+// function drag(e) {
+//   if (isDragging) {
+//     e.preventDefault();
+
+//     currentX = e.clientX - initialX;
+//     currentY = e.clientY - initialY;
+
+//     xOffset = currentX;
+//     yOffset = currentY;
+
+//     setTranslate(currentX, currentY, myImage);
+//   }
+// }
+
+// function setTranslate(xPos, yPos, el) {
+//   el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+// }
+
+// FORM
+
+function validateForm() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+  
+    if (email == "" || password == "") {
+      alert("Por favor, complete todos los campos.");
+      return false;
+    }
   }
+
+ 
+const LOGINCONTAINER = document.querySelector(".login-container-hide")
+
+const func23 = () =>{
+   return LOGINCONTAINER.classList.toggle("login-container-show")
 }
 
-function dragEnd(e) {
-  initialX = currentX;
-  initialY = currentY;
+const PXBTN = document.querySelector(".p-exit-button-login")
 
-  isDragging = false;
-}
-
-function drag(e) {
-  if (isDragging) {
-    e.preventDefault();
-
-    currentX = e.clientX - initialX;
-    currentY = e.clientY - initialY;
-
-    xOffset = currentX;
-    yOffset = currentY;
-
-    setTranslate(currentX, currentY, myImage);
-  }
-}
-
-function setTranslate(xPos, yPos, el) {
-  el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-}
+PXBTN.addEventListener("click",()=>{
+    func23()
+})

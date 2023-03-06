@@ -52,6 +52,6 @@ const NEXTBTN = document.getElementById('next')
 PREVBTN.addEventListener('click', prevId)
 NEXTBTN.addEventListener('click', nextId)
 
-addEventListener('DOMContentLoaded', requestId)
+// addEventListener('DOMContentLoaded', requestId)
 
     // requestMuseum(arr[pos]);
