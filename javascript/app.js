@@ -274,7 +274,7 @@ const buySeccionView = () =>{
         return BOXNAV.innerHTML=`<div><h1>Te invito a explorar mi galería en línea y descubrir las hermosas pinturas que tenemos para ofrecerte.
         Gracias por visitar mi página de venta de pinturas y espero que disfrutes de tu experiencia de compra en mi
          tienda de arte en línea.</h1></div>
-        <div><button class="buy-button">COMPRAR</button></div>
+         <div><a href="#products"><button class="buy-button">COMPRAR</button></div></a>
         <button class="login" id="btn-nav">LOGIN</button>`
     },2000)
 }
@@ -283,10 +283,12 @@ const buySeccionView = () =>{
 
 
 BOXNAV.addEventListener("click",(e)=>{
-    if(e.target.classList=="buy-button"){
-        BOXNAV.classList.toggle('active')
-        BOXNAV.innerHTML=""
-    }else if(e.target.classList=="login"){
+    // if(e.target.classList=="buy-button"){
+    //     BOXNAV.classList.toggle('active')
+    //     BOXNAV.innerHTML=""
+    // }
+    // else
+     if(e.target.classList=="login"){
         func23()
     }
 })
@@ -375,3 +377,4 @@ const PXBTN = document.querySelector(".p-exit-button-login")
 PXBTN.addEventListener("click",()=>{
     func23()
 })
+

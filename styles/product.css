@@ -19,7 +19,6 @@
   }
 
 
-
 .product-container.hide{
     display: none;
 }
@@ -118,7 +117,7 @@
 .boton-carrito, .comprar-carrito-btn{
     margin-top: 10px;
     border: none;
-    background: #676767;
+    background: var(--light-blue);
     /* color: white; */
     height: 50px;
     padding: 5px;
