@@ -131,16 +131,10 @@ XBUTTONCART.addEventListener("click",()=>{
     CARRITO.classList.toggle("active-cart")
 });
 
-// addEventListener('DOMContentLoaded', renderInit, buySeccionView );
-
-const ITEMENU = document.querySelector(".item-menu")
-
- 
 const menuActions = (e) =>{
 
     if(e.target.classList[1]=="open"){
         e.target.classList.toggle("open")
-        // return BOXNAV.innerHTML=""
     };
 
     if(e.target.id=='cart-text'){
@@ -151,8 +145,7 @@ const menuActions = (e) =>{
         console.log(e.target.classList[0]);
         e.target.classList.toggle("active")
         e.target.classList.toggle("open")
-    }
-    ;
+    };
 };
 
 
@@ -277,13 +270,10 @@ const init = () =>{
     
             if (elDel && elDel.precio){
                 ids.pop(id);
-    
                 render10(carrito);
                 reduceTotal(carrito);
                 saveLocalStorage(carrito)
                 alertColorNumberProduct("red")
-    
-            }else{
     
             };
         };
@@ -310,14 +300,26 @@ const init = () =>{
         showLogin()
    });
    
-   
-   addEventListener('DOMContentLoaded', renderInit, buySeccionView());
-   
    CUBE.addEventListener("click",()=>{
        HIDEMUSEUM.classList.toggle("show-museum")
        requestId()
    });
    PXBTN.addEventListener("click",showLogin);
 
+   addEventListener('DOMContentLoaded', renderInit, buySeccionView());
 };
 init()
+
+const JOSH = document.querySelector(".josh-message")
+
+const TALKJOSH = document.querySelector(".talk-josh")
+
+const BUBBLEJOSH = document.querySelector(".josh-message-bubble")
+
+JOSH.addEventListener("click",()=>{
+    console.log("hola");
+    BUBBLEJOSH.innerHTML=`Prueba con el cubo!`
+    setTimeout(()=>{
+        JOSH.style.display="none"
+    },3000);
+});

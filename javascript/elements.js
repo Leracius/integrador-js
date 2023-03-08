@@ -20,3 +20,4 @@ const LOGINCONTAINER = document.querySelector(".login-container-hide");
 const PXBTN = document.querySelector(".p-exit-button-login");
 const CUBE = document.querySelector(".cube-contain");
 const HIDEMUSEUM = document.querySelector(".hide-museum");
+const ITEMENU = document.querySelector(".item-menu");

@@ -48,6 +48,7 @@
     padding: 10px;
     background-color: black;
     border-bottom: 3px solid var(--light-blue);
+    color: white;
   }
   
   button[type="submit"] {
