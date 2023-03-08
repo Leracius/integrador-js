@@ -105,6 +105,7 @@
     align-items: center;
     display: flex;
     z-index: 100;
+    max-width: 350px;
     /* margin: 30px; */
 }
 .img-api img{

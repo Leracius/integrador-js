@@ -26,25 +26,20 @@ const requestId =  async () =>{
     requestMuseum(arr[contador])
   }
 
-const disableBtn = () =>{
-  if(contador===0){
-    PREVBTN.style.display="none"
-  }else{
-    PREVBTN.style.display="block"
-  }
-}
-
 const nextId = async () =>{
     aumentar()
     requestMuseum(objIdArray[contador])
-    disableBtn()
     saveCount()
 }
   const prevId = async () =>{
-    restar()
-    requestMuseum(objIdArray[contador])
-    disableBtn()
-    saveCount()
+    if(contador===0){
+      customAlert("red","VE HACIA ADELANTE")
+    }else{
+      restar()
+      requestMuseum(objIdArray[contador])
+      saveCount()
+    }
+
 }
 
 const PREVBTN = document.getElementById('prev')
