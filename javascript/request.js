@@ -3,7 +3,6 @@ const requestMuseum = async (id) => {
     const response = await fetch(baseURL + id);
     const data = await response.json();
     renderApiImg(data)
-    console.log(response);
 };
 
 
@@ -30,6 +29,7 @@ const nextId = async () =>{
     aumentar()
     requestMuseum(objIdArray[contador])
     saveCount()
+    alertJosh("ID: " + objIdArray[contador] , "1px",2000,"100px");
 }
   const prevId = async () =>{
     if(contador===0){
@@ -38,6 +38,7 @@ const nextId = async () =>{
       restar()
       requestMuseum(objIdArray[contador])
       saveCount()
+      alertJosh("ID: " + objIdArray[contador] , "1px",2000,"100px");
     }
 
 }

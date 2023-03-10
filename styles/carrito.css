@@ -91,14 +91,13 @@
 
 .josh-message{
     position: fixed;
-    width: 210px;
-    height: 130px;
-    z-index: 100;
-    display: flex;
-    align-items: center;
+    width: 400px;
+    height: 300px;
+    z-index: 1000;
+    display: none;
+    align-items: end;
+    justify-content: end;
     flex-direction: column;
-    bottom: 1px;
-    right: 40px;
     overflow: hidden;
 }
 

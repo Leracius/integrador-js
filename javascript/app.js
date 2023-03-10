@@ -90,7 +90,6 @@ const reduceTotal = (arr) =>{
 };
 
 
-
 const renderCart = (product) =>{
     const {nombre, precio, id} = product;
     return `<div class="item">
@@ -98,12 +97,11 @@ const renderCart = (product) =>{
                 <button class="boton-borrar" id="boton-borrar" data-id="${id}">❌</button>
             </div>
             <div class="add-item-container">
-            <button class="minus-btn">-</button>
+            <button class="minus-btn" data-addid="${id}">-</button>
             <h2 class="product-quantity">0</h2>
-            <button class="plus-btn">+</button>
+            <button class="plus-btn" data-addid="${id}">+</button>
         </div>`;
 };
-
 
 
 const render10 = (arr) =>{
@@ -148,8 +146,6 @@ const menuActions = (e) =>{
     };
 };
 
-
-
 const hideAndShowSection = () =>{
     SECTIONBUY.classList[1]=='hide'
     ? SECTIONBUY.classList.remove('hide')
@@ -165,8 +161,6 @@ const renderApiImg = (apires) =>{
     <h1 class="autor">${artistAlphaSort}.</h1>`;
 
 };
-
-
 
 const customAlert = (color, message) =>{
     WARNINGMESSAGE.style.backgroundColor=color
@@ -255,11 +249,29 @@ const showLogin = () =>{
    return LOGINCONTAINER.classList.toggle("login-container-show")
 }
 
+//Funcion incicializadora
 
+const CATEGORIES = document.querySelector('.categories');
+const CARRITOLIST = document.querySelector('.product-cart');
+const CARDMAIN = document.querySelector('.card-main');
+const INFOBTNS = document.querySelector('.info-container');
+const CARRITOBTN = document.querySelector(".comprar-carrito-btn");
+const BOXNAV = document.querySelector('.expand');
+const CUBE = document.querySelector(".cube-contain");
+const PXBTN = document.querySelector(".p-exit-button-login");
 
 const init = () =>{
     CATEGORIES.addEventListener('click',categorieType); 
     CARRITOLIST.addEventListener('click',(e)=>{
+        const addIde = parseInt(e.target.dataset.addid)
+        console.log(addIde);
+        
+        if(e.target.classList[0]=="add-item-container"){
+      
+        }
+        if(e.target.classList[0]=="minus-button"){
+         
+        }
 
         if(e.target.id==="boton-borrar"){
             let id = parseInt(e.target.dataset.id);
@@ -296,30 +308,47 @@ const init = () =>{
      });
      
     BOXNAV.addEventListener("click",(e)=>{
-        if(e.target.classList=="login")
-        showLogin()
+        console.log(e.target);
+        if(e.target.classList=="buy-button"){
+            alertJosh("Disfruta de esta galeria exclusiva!", "1px",3000,"100px");
+        }
+        if(e.target.classList=="login"){
+            showLogin();
+            console.log(e.target);
+            alertJosh("Ingresa tu cuenta", "1px",5000,"100px");
+        };    
    });
    
    CUBE.addEventListener("click",()=>{
        HIDEMUSEUM.classList.toggle("show-museum")
+       alertJosh("Puedes ver imagenes de un largo array de imagenes de la Api museum", "1px", 3000,"100px")
        requestId()
    });
    PXBTN.addEventListener("click",showLogin);
 
    addEventListener('DOMContentLoaded', renderInit, buySeccionView());
 };
-init()
+
+//  ALERT JOSH
+
+// ALERT JOSH ES UNA ALERTA INTERACTIVA MULTIPROPOSITO QUE PUEDE SER CONFIGURADA SEGUN CONTENIDO DEL
+// DE LOS PARAMETROS DE LA FUNCION. TIENE UN MENSAJE, POSICION, TIEMPO (ES OPCIONAL) Y MARGEN DERECHO
+// SOLO DISPONIBLE EN VERSION DE ESCRITORIO
 
 const JOSH = document.querySelector(".josh-message")
-
 const TALKJOSH = document.querySelector(".talk-josh")
-
 const BUBBLEJOSH = document.querySelector(".josh-message-bubble")
 
-JOSH.addEventListener("click",()=>{
-    console.log("hola");
-    BUBBLEJOSH.innerHTML=`Prueba con el cubo!`
+const alertJosh = (mesaage, bottom, time=0, margin,) => {
+    JOSH.style.display="flex";
+    JOSH.style.bottom= bottom;
+    JOSH.style.marginRight=margin
+    JOSH.style.animation="scaleAnim 0.2s linear 0s 1 normal none"
+    BUBBLEJOSH.innerHTML=mesaage
+    if(!time==0)
     setTimeout(()=>{
         JOSH.style.display="none"
-    },3000);
-});
+    },time);
+};
+
+init()
