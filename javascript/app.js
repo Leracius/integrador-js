@@ -1,3 +1,4 @@
+// ESTA FUNCION SE ENCARGA DE EVALUAR EL TIPO DE DATO QUE ES IGUAL A LAS CLASSLIST DE UN EVENTO CON UN SWITCH
 
 function categorieType (e){
     let eventClasslistValue = e.target.classList.value;
@@ -20,6 +21,9 @@ function categorieType (e){
     };
 };
 
+
+// ESTA FUNCION RENDERIZA LAS FLIPINGS CARDS QUE EN ESTE CASO RECIBEN SU CONTENIDO DE UN UN ARRAY DE OBJETOS
+
 const renderProduct = (product) =>{
     const {id, img, precio, nombre} = product;
     return`<div class="card">
@@ -34,6 +38,8 @@ const renderProduct = (product) =>{
 </div>`;
    
 };
+
+
 
 const filterProducts = (categoria) =>{
    return productsImg.filter(e=>e.categoria==categoria);
@@ -71,10 +77,14 @@ if(e.target.classList=="boton-carrito"){
        render10(carrito);  
        saveLocalStorage(carrito)
        customAlert("green","PRODUCTO AGREGADO AL CARRITO")
+       alertJosh(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
+         `, "1px",1500,"70px")
+
        alertColorNumberProduct("rgb(0, 194, 0)") 
 
     }else{ 
         customAlert("red","PRODUCTO EN EL CARRITO")     
+        alertJosh("Producto en carrito", "1px",1500,"70px")
     };
 }};
 
@@ -95,12 +105,13 @@ const renderCart = (product) =>{
     return `<div class="item">
                 <h1>${nombre} $${precio}</h1>
                 <button class="boton-borrar" id="boton-borrar" data-id="${id}">❌</button>
-            </div>
-            <div class="add-item-container">
-            <button class="minus-btn" data-addid="${id}">-</button>
-            <h2 class="product-quantity">0</h2>
-            <button class="plus-btn" data-addid="${id}">+</button>
-        </div>`;
+                </div>
+
+                <div class="add-item-container">
+                <button class="minus-btn" data-addid="${id}">-</button>
+                <h2 class="product-quantity">0</h2>
+                <button class="plus-btn" data-addid="${id}">+</button>
+            </div>`;
 };
 
 
@@ -292,11 +303,24 @@ const init = () =>{
     }); 
 
     CARDMAIN.addEventListener('click',addCartProduct);
+    CARDMAIN.addEventListener("click",(e)=>{
+   
+        if(e.target.classList[0]=="boton-carrito"){
+            const elem = parseInt( e.target.dataset.id)
+            console.log(elem);
+        };
+
+        const carro45 = carrito.filter((el)=>el.id==6)
+        console.log(carrito[1]);
+
+    });
+
     INFOBTNS.addEventListener('click',menuActions);
 
     CARRITOBTN.addEventListener("click",()=>{
         if(carrito==""){
          customAlert("red", "CARRITO VACIO")
+         alertJosh(`<p class="josh-message-bubble style=font-size: 20px;">🤨</p>`, "1px", 1700,"350px")
         }
         if(carrito!=""){
          customAlert("green", "COMPRA EXITOSA")
@@ -304,24 +328,28 @@ const init = () =>{
          render10(carrito)
          reduceTotal(carrito)
          saveLocalStorage(carrito)
+         alertJosh(addImgToJosh, "1px", 1700,"350px")
+         
+
+         
         }
      });
      
     BOXNAV.addEventListener("click",(e)=>{
         console.log(e.target);
         if(e.target.classList=="buy-button"){
-            alertJosh("Disfruta de esta galeria exclusiva!", "1px",3000,"100px");
+            alertJosh("Disfruta de esta galeria exclusiva!", "1px", 5000,"70px");
         }
         if(e.target.classList=="login"){
             showLogin();
             console.log(e.target);
-            alertJosh("Ingresa tu cuenta", "1px",5000,"100px");
+            alertJosh("Ingresa tu cuenta", "1px", 5000,"70px");
         };    
    });
    
    CUBE.addEventListener("click",()=>{
        HIDEMUSEUM.classList.toggle("show-museum")
-       alertJosh("Puedes ver imagenes de un largo array de imagenes de la Api museum", "1px", 3000,"100px")
+       alertJosh("API Metropolitan museum NY", "1px", 3000,"70px")
        requestId()
    });
    PXBTN.addEventListener("click",showLogin);
@@ -329,26 +357,4 @@ const init = () =>{
    addEventListener('DOMContentLoaded', renderInit, buySeccionView());
 };
 
-//  ALERT JOSH
-
-// ALERT JOSH ES UNA ALERTA INTERACTIVA MULTIPROPOSITO QUE PUEDE SER CONFIGURADA SEGUN CONTENIDO DEL
-// DE LOS PARAMETROS DE LA FUNCION. TIENE UN MENSAJE, POSICION, TIEMPO (ES OPCIONAL) Y MARGEN DERECHO
-// SOLO DISPONIBLE EN VERSION DE ESCRITORIO
-
-const JOSH = document.querySelector(".josh-message")
-const TALKJOSH = document.querySelector(".talk-josh")
-const BUBBLEJOSH = document.querySelector(".josh-message-bubble")
-
-const alertJosh = (mesaage, bottom, time=0, margin,) => {
-    JOSH.style.display="flex";
-    JOSH.style.bottom= bottom;
-    JOSH.style.marginRight=margin
-    JOSH.style.animation="scaleAnim 0.2s linear 0s 1 normal none"
-    BUBBLEJOSH.innerHTML=mesaage
-    if(!time==0)
-    setTimeout(()=>{
-        JOSH.style.display="none"
-    },time);
-};
-
-init()
+init();

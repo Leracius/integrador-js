@@ -29,7 +29,7 @@ const nextId = async () =>{
     aumentar()
     requestMuseum(objIdArray[contador])
     saveCount()
-    alertJosh("ID: " + objIdArray[contador] , "1px",2000,"100px");
+    alertJosh("ID: " + objIdArray[contador] , "1px",0,"70px");
 }
   const prevId = async () =>{
     if(contador===0){
@@ -38,7 +38,7 @@ const nextId = async () =>{
       restar()
       requestMuseum(objIdArray[contador])
       saveCount()
-      alertJosh("ID: " + objIdArray[contador] , "1px",2000,"100px");
+      alertJosh("ID: " + objIdArray[contador] , "1px",0,"70px");
     }
 
 }

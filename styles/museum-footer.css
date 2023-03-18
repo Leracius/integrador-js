@@ -113,7 +113,7 @@
 }
 
 footer{
-    width: 60%;
+    width: 100%;
     background-position: center;
     background-size: cover;
     display: flex;
@@ -121,8 +121,9 @@ footer{
     align-items: center;
     flex-direction: column;
     background-image: url(./assets/space.gif);
-    border: 3px solid white;
+    /* border: 3px solid white; */
 }
+
 footer h1, footer h3{
     text-align: center;
 
@@ -169,4 +170,8 @@ footer h3{
     background-image: url(./assets/fantasmita.gif);
     z-index: 300;
     background-size: cover;
+  } */
+
+  /* .img-axel{
+
   } */
