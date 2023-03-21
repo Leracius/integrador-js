@@ -8,21 +8,26 @@ function categorieType (e){
             break;
         case 'btn-basquiat':
             showProduct(filterProducts('basquiat'));
+            alertJosh("Estas son algunas obras de Jean Michel Basquiat el artista visual más exitoso en la historia del arte afrodescendiente de su época", "1px", 5000,"70px")
             break;
         case 'btn-medieval':
             showProduct(filterProducts('medieval'));
+            alertJosh("Esta es una seleccion de algunas obras de la época medieval", "1px" , 3000, "70px")
             break;
         case 'btn-moderno':
             showProduct(filterProducts('modern-classic'));
+            alertJosh("Esta es una seleccion obras clásicas michificadas ", "1px" , 3000, "70px")
             break;
         case 'btn-surrealismo':
             showProduct(filterProducts('surrealism'));
+            alertJosh("Esta es una seleccion surrealista de obras a ser interpretadas por cada uno", "1px" , 3000, "70px")
             break;
     };
 };
 
 
-// ESTA FUNCION RENDERIZA LAS FLIPINGS CARDS QUE EN ESTE CASO RECIBEN SU CONTENIDO DE UN UN ARRAY DE OBJETOS
+// ESTA FUNCION RENDERIZA LAS FLIPINGS CARDS QUE EN ESTE CASO RECIBEN SU CONTENIDO DE UN UN ARRAY 
+// DE OBJETOS
 
 const renderProduct = (product) =>{
     const {id, img, precio, nombre} = product;
@@ -40,11 +45,12 @@ const renderProduct = (product) =>{
 };
 
 
-
+// Funcion para filtrar los productos por categoria
 const filterProducts = (categoria) =>{
    return productsImg.filter(e=>e.categoria==categoria);
 };
 
+// renderizar los productos
 const showProduct = (el) =>{
     CARDMAIN.innerHTML= el.map((e)=>renderProduct(e)).join('');
 };
@@ -64,32 +70,49 @@ let ids = [];
 
 const addCartProduct = (e) =>{
 if(e.target.classList=="boton-carrito"){
-
     let id = parseInt(e.target.dataset.id);
+
+
+    
+
+    // !carrito[index].cantidad
+    // ?console.log("no")
+    // :console.log("si");
+
+
+    // carrito[index].cantidad = 1
+    
 
     const search = productsImg.filter((carritoId)=>{
         return carritoId.id==id;
    });
 
-    if(!ids.includes(id)){    
+    if(!ids.includes(id)){
+      
        carrito.push(search[0]);
+       let index = carrito.findIndex(el=>el.id==id)
+        carrito[index].cantidad = 1
+
+
        reduceTotal(carrito);
-       render10(carrito);  
+       renderCarritoList(carrito);  
        saveLocalStorage(carrito)
        customAlert("green","PRODUCTO AGREGADO AL CARRITO")
        alertJosh(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
-         `, "1px",1500,"70px")
-
+         `, "1px",1500,"350px")
        alertColorNumberProduct("rgb(0, 194, 0)") 
 
     }else{ 
         customAlert("red","PRODUCTO EN EL CARRITO")     
-        alertJosh("Producto en carrito", "1px",1500,"70px")
+        alertJosh("Producto en carrito", "1px",1500,"350px")
     };
 }};
 
 const reduceTotal = (arr) =>{
-    total = arr.map(el=>el.precio)
+    total = arr.map(el=>el.precio * el.cantidad)
+
+    console.log(total);
+
     ids = carrito.map(el=>el.id)
     const totalSet = [...new Set(total)];
     let redTotal = totalSet.reduce((acc, v=0) => {
@@ -101,21 +124,23 @@ const reduceTotal = (arr) =>{
 
 
 const renderCart = (product) =>{
-    const {nombre, precio, id} = product;
+    const {nombre, precio, id, cantidad, img} = product;
+
     return `<div class="item">
                 <h1>${nombre} $${precio}</h1>
+            
                 <button class="boton-borrar" id="boton-borrar" data-id="${id}">❌</button>
                 </div>
 
                 <div class="add-item-container">
                 <button class="minus-btn" data-addid="${id}">-</button>
-                <h2 class="product-quantity">0</h2>
+                <h2 class="product-quantity">${cantidad}</h2>
                 <button class="plus-btn" data-addid="${id}">+</button>
             </div>`;
 };
 
 
-const render10 = (arr) =>{
+const renderCarritoList = (arr) =>{
     arr.length===0
     ?CARRITOTEXT.innerHTML=0
     :CARRITOTEXT.innerHTML=arr.length
@@ -131,7 +156,7 @@ const alertColorNumberProduct = (color) =>{
 
 const renderInit = () =>{
     showProduct(productsImg)
-    render10(carrito)
+    renderCarritoList(carrito)
     reduceTotal(carrito)
 };
 
@@ -179,13 +204,13 @@ const customAlert = (color, message) =>{
     WARNINGMESSAGE.innerHTML=message
     setTimeout(()=>{
         CORRECTBUY.style.display="none"
-    },1000)
+    },1000);
 };
 
 const buySeccionView = () =>{
     setTimeout(()=>{
     BOXNAV.classList.toggle('active')
-    },1500)
+    },1500);
     setTimeout(()=>{
         return BOXNAV.innerHTML=`<div><h1>Te invito a explorar mi galería en línea y descubrir las hermosas pinturas que tenemos para ofrecerte.
         Gracias por visitar mi página de venta de pinturas y espero que disfrutes de tu experiencia de compra en mi
@@ -194,57 +219,6 @@ const buySeccionView = () =>{
         <button class="login" id="btn-nav">LOGIN</button>`
     },2000);
 };
-
-// CHAT GPT SOLUTIONS
-
-// let myImage = document.querySelector("#myImage");
-// let isDragging = false;
-// let currentX;
-// let currentY;
-// let initialX;
-// let initialY;
-// let xOffset = 0;
-// let yOffset = 0;
-
-// myImage.addEventListener("mousedown", dragStart);
-// myImage.addEventListener("mouseup", dragEnd);
-// myImage.addEventListener("mousemove", drag);
-
-// function dragStart(e) {
-//   initialX = e.clientX - xOffset;
-//   initialY = e.clientY - yOffset;
-
-//   if (e.target === myImage) {
-//     isDragging = true;
-//   }
-// }
-
-// function dragEnd(e) {
-//   initialX = currentX;
-//   initialY = currentY;
-
-//   isDragging = false;
-// }
-
-// function drag(e) {
-//   if (isDragging) {
-//     e.preventDefault();
-
-//     currentX = e.clientX - initialX;
-//     currentY = e.clientY - initialY;
-
-//     xOffset = currentX;
-//     yOffset = currentY;
-
-//     setTranslate(currentX, currentY, myImage);
-//   }
-// }
-
-// function setTranslate(xPos, yPos, el) {
-//   el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-// }
-
-// FORM
 
 const validateForm = () => {
     const email = document.getElementById("email").value;
@@ -260,6 +234,29 @@ const showLogin = () =>{
    return LOGINCONTAINER.classList.toggle("login-container-show")
 }
 
+
+const addQuantity = (id) =>{
+    let index = carrito.findIndex(el=>el.id==id)
+    carrito[index].cantidad = carrito[index].cantidad + 1
+
+    reduceTotal(carrito)
+    renderCarritoList(carrito)
+    saveLocalStorage(carrito)
+};
+
+const restQuantity = (id) =>{
+    let index = carrito.findIndex(el=>el.id==id)
+
+    carrito[index].cantidad>1
+    ?carrito[index].cantidad = carrito[index].cantidad - 1
+    :alertJosh("Puedes eliminar el producto con X", "1px", 2000,"350px")
+
+    reduceTotal(carrito)
+    renderCarritoList(carrito)
+    saveLocalStorage(carrito)
+};
+
+
 //Funcion incicializadora
 
 const CATEGORIES = document.querySelector('.categories');
@@ -273,16 +270,13 @@ const PXBTN = document.querySelector(".p-exit-button-login");
 
 const init = () =>{
     CATEGORIES.addEventListener('click',categorieType); 
+    
     CARRITOLIST.addEventListener('click',(e)=>{
         const addIde = parseInt(e.target.dataset.addid)
-        console.log(addIde);
         
-        if(e.target.classList[0]=="add-item-container"){
-      
-        }
-        if(e.target.classList[0]=="minus-button"){
-         
-        }
+        if(e.target.classList[0]=="plus-btn")addQuantity(addIde)
+
+        if(e.target.classList[0]=="minus-btn")restQuantity(addIde)
 
         if(e.target.id==="boton-borrar"){
             let id = parseInt(e.target.dataset.id);
@@ -293,7 +287,7 @@ const init = () =>{
     
             if (elDel && elDel.precio){
                 ids.pop(id);
-                render10(carrito);
+                renderCarritoList(carrito);
                 reduceTotal(carrito);
                 saveLocalStorage(carrito)
                 alertColorNumberProduct("red")
@@ -303,17 +297,6 @@ const init = () =>{
     }); 
 
     CARDMAIN.addEventListener('click',addCartProduct);
-    CARDMAIN.addEventListener("click",(e)=>{
-   
-        if(e.target.classList[0]=="boton-carrito"){
-            const elem = parseInt( e.target.dataset.id)
-            console.log(elem);
-        };
-
-        const carro45 = carrito.filter((el)=>el.id==6)
-        console.log(carrito[1]);
-
-    });
 
     INFOBTNS.addEventListener('click',menuActions);
 
@@ -325,18 +308,15 @@ const init = () =>{
         if(carrito!=""){
          customAlert("green", "COMPRA EXITOSA")
          carrito = []
-         render10(carrito)
+         renderCarritoList(carrito)
          reduceTotal(carrito)
          saveLocalStorage(carrito)
          alertJosh(addImgToJosh, "1px", 1700,"350px")
-         
-
-         
+             
         }
      });
      
     BOXNAV.addEventListener("click",(e)=>{
-        console.log(e.target);
         if(e.target.classList=="buy-button"){
             alertJosh("Disfruta de esta galeria exclusiva!", "1px", 5000,"70px");
         }

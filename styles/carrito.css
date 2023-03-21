@@ -234,6 +234,31 @@
     overflow-y: auto;
 }
 
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+  
+
+::-webkit-scrollbar-track {
+    background-color: rgba(36, 3, 3, 0);
+}
+  
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--light-blue);
+}
+  
+::-webkit-scrollbar-button {
+    background-color: rgba(36, 3, 3, 0);
+}
+  
+::-webkit-scrollbar-button:hover {
+    background-color: rgba(36, 3, 3, 0);
+    height: 0;
+}
+
 /* PRODUCTO EN EL CARRITO */
 
 .item{
@@ -266,6 +291,7 @@
     width: 25px;
 }
 .add-item-container{
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
