@@ -1,4 +1,4 @@
-// ESTA FUNCION SE ENCARGA DE EVALUAR EL TIPO DE DATO QUE ES IGUAL A LAS CLASSLIST DE UN EVENTO CON UN SWITCH
+// ESTA FUNCION SE ENCARGA DE EVALUAR EL TIPO DE DATO QUE SEA IGUAL A LAS CLASSLIST DE UN EVENTO CON UN SWITCH
 
 function categorieType (e){
     let eventClasslistValue = e.target.classList.value;
@@ -71,18 +71,6 @@ let ids = [];
 const addCartProduct = (e) =>{
 if(e.target.classList=="boton-carrito"){
     let id = parseInt(e.target.dataset.id);
-
-
-    
-
-    // !carrito[index].cantidad
-    // ?console.log("no")
-    // :console.log("si");
-
-
-    // carrito[index].cantidad = 1
-    
-
     const search = productsImg.filter((carritoId)=>{
         return carritoId.id==id;
    });
@@ -90,48 +78,42 @@ if(e.target.classList=="boton-carrito"){
     if(!ids.includes(id)){
       
        carrito.push(search[0]);
-       let index = carrito.findIndex(el=>el.id==id)
-        carrito[index].cantidad = 1
-
+       let index = carrito.findIndex(el=>el.id==id);
+       carrito[index].cantidad = 1;
 
        reduceTotal(carrito);
        renderCarritoList(carrito);  
-       saveLocalStorage(carrito)
-       customAlert("green","PRODUCTO AGREGADO AL CARRITO")
+       saveLocalStorage(carrito);
+       customAlert("green","PRODUCTO AGREGADO AL CARRITO");
        alertJosh(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
-         `, "1px",1500,"350px")
-       alertColorNumberProduct("rgb(0, 194, 0)") 
+         `, "1px",1500,"350px");
+       alertColorNumberProduct("rgb(0, 194, 0)"); 
 
     }else{ 
-        customAlert("red","PRODUCTO EN EL CARRITO")     
-        alertJosh("Producto en carrito", "1px",1500,"350px")
+        customAlert("red","PRODUCTO EN EL CARRITO");     
+        alertJosh("Producto en carrito", "1px",1500,"350px");
     };
 }};
 
 const reduceTotal = (arr) =>{
-    total = arr.map(el=>el.precio * el.cantidad)
-
-    console.log(total);
-
-    ids = carrito.map(el=>el.id)
+    total = arr.map(el=>el.precio * el.cantidad);
+    ids = carrito.map(el=>el.id);
     const totalSet = [...new Set(total)];
     let redTotal = totalSet.reduce((acc, v=0) => {
         return acc + v;
-      }, 0)
+      }, 0);
     document.querySelector('.total').innerHTML=(`TOTAL: $${redTotal}`);
     return redTotal;
 };
 
 
 const renderCart = (product) =>{
-    const {nombre, precio, id, cantidad, img} = product;
+    const {nombre, precio, id, cantidad} = product;
 
     return `<div class="item">
-                <h1>${nombre} $${precio}</h1>
-            
+                <h1>${nombre} $${precio} x ${cantidad}</h1>
                 <button class="boton-borrar" id="boton-borrar" data-id="${id}">❌</button>
                 </div>
-
                 <div class="add-item-container">
                 <button class="minus-btn" data-addid="${id}">-</button>
                 <h2 class="product-quantity">${cantidad}</h2>
@@ -148,27 +130,27 @@ const renderCarritoList = (arr) =>{
 };
 
 const alertColorNumberProduct = (color) =>{
-    CARRITOTEXT.style.color=color
+    CARRITOTEXT.style.color=color;
     setTimeout(()=>{
-        CARRITOTEXT.style.color="white" 
+        CARRITOTEXT.style.color="white"; 
     },1000);
 };
 
 const renderInit = () =>{
-    showProduct(productsImg)
-    renderCarritoList(carrito)
-    reduceTotal(carrito)
+    showProduct(productsImg);
+    renderCarritoList(carrito);
+    reduceTotal(carrito);
 };
 
 
 XBUTTONCART.addEventListener("click",()=>{
-    CARRITO.classList.toggle("active-cart")
+    CARRITO.classList.toggle("active-cart");
 });
 
 const menuActions = (e) =>{
 
     if(e.target.classList[1]=="open"){
-        e.target.classList.toggle("open")
+        e.target.classList.toggle("open");
     };
 
     if(e.target.id=='cart-text'){
@@ -176,15 +158,14 @@ const menuActions = (e) =>{
     };
 
     if(e.target.id=="comprar"){
-        console.log(e.target.classList[0]);
-        e.target.classList.toggle("active")
-        e.target.classList.toggle("open")
+        e.target.classList.toggle("active");
+        e.target.classList.toggle("open");
     };
 };
 
 const hideAndShowSection = () =>{
     SECTIONBUY.classList[1]=='hide'
-    ? SECTIONBUY.classList.remove('hide')
+    ?SECTIONBUY.classList.remove('hide')
     :SECTION.classList.add('hide');
 };
 
@@ -199,17 +180,17 @@ const renderApiImg = (apires) =>{
 };
 
 const customAlert = (color, message) =>{
-    WARNINGMESSAGE.style.backgroundColor=color
-    CORRECTBUY.style.display="flex"
-    WARNINGMESSAGE.innerHTML=message
+    WARNINGMESSAGE.style.backgroundColor=color;
+    CORRECTBUY.style.display="flex";
+    WARNINGMESSAGE.innerHTML=message;
     setTimeout(()=>{
-        CORRECTBUY.style.display="none"
+        CORRECTBUY.style.display="none";
     },1000);
 };
 
 const buySeccionView = () =>{
     setTimeout(()=>{
-    BOXNAV.classList.toggle('active')
+    BOXNAV.classList.toggle('active');
     },1500);
     setTimeout(()=>{
         return BOXNAV.innerHTML=`<div><h1>Te invito a explorar mi galería en línea y descubrir las hermosas pinturas que tenemos para ofrecerte.
@@ -231,31 +212,30 @@ const validateForm = () => {
   };
 
 const showLogin = () =>{
-   return LOGINCONTAINER.classList.toggle("login-container-show")
-}
+   return LOGINCONTAINER.classList.toggle("login-container-show");
+};
 
 
 const addQuantity = (id) =>{
-    let index = carrito.findIndex(el=>el.id==id)
+    let index = carrito.findIndex(el=>el.id==id);
     carrito[index].cantidad = carrito[index].cantidad + 1
 
-    reduceTotal(carrito)
-    renderCarritoList(carrito)
-    saveLocalStorage(carrito)
+    reduceTotal(carrito);
+    renderCarritoList(carrito);
+    saveLocalStorage(carrito);
 };
 
 const restQuantity = (id) =>{
-    let index = carrito.findIndex(el=>el.id==id)
+    let index = carrito.findIndex(el=>el.id==id);
 
     carrito[index].cantidad>1
     ?carrito[index].cantidad = carrito[index].cantidad - 1
-    :alertJosh("Puedes eliminar el producto con X", "1px", 2000,"350px")
+    :alertJosh("Puedes eliminar el producto con X", "1px", 2000,"350px");
 
-    reduceTotal(carrito)
-    renderCarritoList(carrito)
-    saveLocalStorage(carrito)
+    reduceTotal(carrito);
+    renderCarritoList(carrito);
+    saveLocalStorage(carrito);
 };
-
 
 //Funcion incicializadora
 
@@ -269,6 +249,7 @@ const CUBE = document.querySelector(".cube-contain");
 const PXBTN = document.querySelector(".p-exit-button-login");
 
 const init = () =>{
+
     CATEGORIES.addEventListener('click',categorieType); 
     
     CARRITOLIST.addEventListener('click',(e)=>{
@@ -283,7 +264,6 @@ const init = () =>{
     
             let elDel = carrito.find(el=>el.id===id);
             carrito = carrito.filter(el=>el!==elDel); 
-            
     
             if (elDel && elDel.precio){
                 ids.pop(id);
@@ -303,7 +283,7 @@ const init = () =>{
     CARRITOBTN.addEventListener("click",()=>{
         if(carrito==""){
          customAlert("red", "CARRITO VACIO")
-         alertJosh(`<p class="josh-message-bubble style=font-size: 20px;">🤨</p>`, "1px", 1700,"350px")
+         alertJosh(`<p class="josh-message-bubble style="font-size: 20px;">El carrito está vacío 🤨</p>`, "1px", 1700,"350px")
         }
         if(carrito!=""){
          customAlert("green", "COMPRA EXITOSA")
